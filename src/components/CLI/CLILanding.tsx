@@ -35,7 +35,7 @@ export default function CLILanding() {
   // Matrix ASCII effect logic
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    
+
     if (prefersReducedMotion || hasBootedThisSession) {
       setAsciiAnimating(false);
       setBooting(false);
@@ -49,14 +49,14 @@ export default function CLILanding() {
     const lines = cleanAscii.split('\n');
     const height = lines.length;
     const width = Math.max(...lines.map(l => l.length));
-    
+
     // Start drops at random heights above 0
     const drops = Array.from({ length: width }, () => Math.floor(Math.random() * -30));
 
     const interval = setInterval(() => {
       let allDone = true;
       let newAscii = '\n'; // Preserve leading newline format
-      
+
       for (let r = 0; r < height; r++) {
         let rowStr = '';
         const row = lines[r] || '';
@@ -109,7 +109,7 @@ export default function CLILanding() {
 
     const fullLine = INTRO_LINES[currentLineIdx] + "\n";
     let charIdx = 0;
-    
+
     const interval = setInterval(() => {
       const charToAdd = fullLine.charAt(charIdx);
       setIntroText((prev) => prev + charToAdd);
@@ -141,13 +141,13 @@ export default function CLILanding() {
       }
 
       const key = e.key;
-      
+
       if (key.toLowerCase() === "h" && e.ctrlKey) {
         e.preventDefault();
         setShowHelp((prev) => !prev);
         return;
       }
-      
+
       if (key === "Escape") {
         setShowHelp(false);
         return;
@@ -180,7 +180,7 @@ export default function CLILanding() {
   };
 
   return (
-    <div 
+    <div
       className="min-h-screen bg-[var(--color-background)] text-[var(--color-foreground)] font-mono p-4 sm:p-8 flex flex-col justify-center items-center"
       onClick={handleContainerClick}
     >
@@ -191,12 +191,12 @@ export default function CLILanding() {
             <span className="text-blue-400">~</span>
             <span>$ whoami</span>
           </div>
-          
+
           {booting || asciiAnimating ? (
             <div className="whitespace-pre-wrap leading-relaxed text-sm sm:text-base">
-              <span 
+              <span
                 className="inline-block bg-clip-text text-transparent bg-center bg-no-repeat whitespace-pre font-mono"
-                style={{ 
+                style={{
                   backgroundImage: "url('/san_fran_portrait.png')",
                   backgroundSize: "100% 100%",
                   fontSize: "min(5px, 0.8vw)",
@@ -213,9 +213,9 @@ export default function CLILanding() {
             </div>
           ) : (
             <div className="whitespace-pre-wrap leading-relaxed text-sm sm:text-base text-[var(--color-muted)]">
-              <span 
+              <span
                 className="inline-block bg-clip-text text-transparent bg-center bg-no-repeat whitespace-pre font-mono"
-                style={{ 
+                style={{
                   backgroundImage: "url('/san_fran_portrait.png')",
                   backgroundSize: "100% 100%",
                   fontSize: "min(5px, 0.8vw)",
@@ -236,7 +236,7 @@ export default function CLILanding() {
           <div className="mt-8 animate-in fade-in duration-300">
             <p className="mb-4 text-[var(--color-muted)] hidden sm:block">Choose a section: (use ↑ ↓ arrow keys, press Enter)</p>
             <p className="mb-4 text-[var(--color-muted)] sm:hidden">Select a section:</p>
-            
+
             <nav className="flex flex-col gap-1 sm:gap-2">
               {MENU_ITEMS.map((item, idx) => (
                 <Link
@@ -256,12 +256,12 @@ export default function CLILanding() {
                 </Link>
               ))}
             </nav>
-            
+
             <CommandLine isHome={true} onEmptyEnter={() => router.push(MENU_ITEMS[selectedIndex].href)} />
-            
+
             <div className="mt-8 flex justify-between items-center text-xs text-[var(--color-muted)] opacity-50">
-              <span className="hidden sm:inline">press 'Ctrl + h' for help</span>
-              <button 
+              <span className="hidden sm:inline">type 'help' for help</span>
+              <button
                 className="sm:hidden px-3 py-1 border border-white/20 rounded-md hover:bg-white/10 transition-colors"
                 onClick={(e) => { e.stopPropagation(); setShowHelp(true); }}
               >
@@ -293,7 +293,7 @@ export default function CLILanding() {
                 <li><code className="text-white">refresh</code> - Reload page</li>
                 <li><code className="text-white">back</code> - Go back to previous page</li>
               </ul>
-              <button 
+              <button
                 onClick={() => setShowHelp(false)}
                 className="mt-6 w-full py-2 bg-gray-800 hover:bg-gray-700 rounded text-center transition-colors"
               >

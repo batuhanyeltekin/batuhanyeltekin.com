@@ -18,7 +18,7 @@ export default function CommandLine({ isHome = false, currentPath = "", onEmptyE
 
   useEffect(() => {
     let isCancelled = false;
-    const FULL_TEXT = "You can write some CLI commands here. Ctrl + h for more.";
+    const FULL_TEXT = "You can write some CLI commands here. Type 'help' for more.";
 
     const animatePlaceholder = async () => {
       // Small delay before starting
@@ -86,7 +86,7 @@ export default function CommandLine({ isHome = false, currentPath = "", onEmptyE
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [buffer, currentPath, router]);
+  }, [buffer, currentPath, router, onEmptyEnter]);
 
   const handleCommand = (cmd: string) => {
     const args = cmd.split(" ");
@@ -116,6 +116,8 @@ export default function CommandLine({ isHome = false, currentPath = "", onEmptyE
       router.back();
     } else if (baseCmd === "frank") {
       showOutput("get out of here frank");
+    } else if (baseCmd === "help") {
+      showOutput("cd [dir], ls, pwd, clear, refresh, back, whoami");
     } else {
       showOutput("invalid");
     }
@@ -136,12 +138,24 @@ export default function CommandLine({ isHome = false, currentPath = "", onEmptyE
     setOutput(null);
   };
 
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (buffer.trim() === "") {
+        if (onEmptyEnter) onEmptyEnter();
+        return;
+      }
+      handleCommand(buffer.trim().toLowerCase());
+    }
+  };
+
   const hiddenInput = (
     <input
       id="cli-input"
       type="text"
       value={buffer}
       onChange={handleInputChange}
+      onKeyDown={handleInputKeyDown}
       className="opacity-0 absolute w-px h-px overflow-hidden -z-10"
       autoCapitalize="none"
       autoComplete="off"
@@ -154,13 +168,13 @@ export default function CommandLine({ isHome = false, currentPath = "", onEmptyE
     return (
       <div className="mt-12 flex flex-col gap-2">
         {hiddenInput}
-        <div className="flex items-center gap-2 text-[var(--color-muted)]">
-          <span className="text-[var(--color-accent)]">visitor@batuhanyeltekin:</span>
-          <span className="text-blue-400">~</span>
-          <span className="text-white whitespace-pre">
+        <div className="flex flex-wrap items-center gap-2 text-[var(--color-muted)]">
+          <span className="text-[var(--color-accent)] shrink-0">visitor@batuhanyeltekin:</span>
+          <span className="text-blue-400 shrink-0">~</span>
+          <span className="text-white whitespace-pre-wrap break-words">
             $ {buffer ? buffer : <span className="text-[var(--color-muted)] italic opacity-50">{placeholder}</span>}
           </span>
-          {!output && <span className="inline-block w-2.5 h-5 bg-[var(--color-foreground)] animate-pulse align-middle" />}
+          {!output && <span className="inline-block w-2.5 h-5 bg-[var(--color-foreground)] animate-pulse align-middle shrink-0" />}
         </div>
         {output && <div className="text-gray-300 ml-4">{output}</div>}
       </div>
@@ -170,17 +184,17 @@ export default function CommandLine({ isHome = false, currentPath = "", onEmptyE
   return (
     <div className="flex flex-col">
       {hiddenInput}
-      <div className="hover:text-[var(--color-accent)] transition-colors group flex items-center gap-2">
-        <Link href="/" className="flex items-center gap-2">
+      <div className="hover:text-[var(--color-accent)] transition-colors group flex flex-wrap items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 shrink-0">
           <span className="text-[var(--color-accent)]">~/</span>
           <span className="text-gray-300 group-hover:text-white transition-colors">{currentPath}</span>
         </Link>
-        <span className="text-[var(--color-muted)] group-hover:text-white">$</span>
-        <span className="text-white whitespace-pre">
+        <span className="text-[var(--color-muted)] group-hover:text-white shrink-0">$</span>
+        <span className="text-white whitespace-pre-wrap break-words">
           {buffer ? buffer : <span className="text-[var(--color-muted)] italic opacity-50">{placeholder}</span>}
         </span>
         {!output && (
-          <span className="inline-block w-2 h-4 bg-[var(--color-foreground)] animate-pulse align-middle opacity-100 transition-opacity" />
+          <span className="inline-block w-2 h-4 bg-[var(--color-foreground)] animate-pulse align-middle opacity-100 transition-opacity shrink-0" />
         )}
       </div>
       {output && <div className="text-gray-300 ml-6 text-sm mt-1">{output}</div>}
