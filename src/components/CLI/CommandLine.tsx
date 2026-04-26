@@ -116,6 +116,8 @@ export default function CommandLine({ isHome = false, currentPath = "", onEmptyE
       router.back();
     } else if (baseCmd === "frank") {
       showOutput("get out of here frank");
+    } else if (baseCmd === "michelle") {
+      showOutput("my belle <333");
     } else if (baseCmd === "help") {
       showOutput("cd [dir], ls, pwd, clear, refresh, back, whoami");
     } else {

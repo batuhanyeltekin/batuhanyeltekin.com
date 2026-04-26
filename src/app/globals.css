@@ -47,3 +47,22 @@ a {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+@keyframes about-carousel-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 0.375rem));
+  }
+}
+
+.about-carousel-track {
+  animation: about-carousel-scroll 52s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-carousel-track {
+    animation: none;
+  }
+}
