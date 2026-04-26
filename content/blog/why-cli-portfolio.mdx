@@ -1,0 +1,39 @@
+---
+title: "Why I rewrote my portfolio in CLI"
+date: "2026-04-25"
+excerpt: "A short hook for the index page. Discussing the decisions behind moving to a CLI-style portfolio."
+tags: ["meta", "frontend", "design"]
+draft: false
+---
+
+# Why a CLI?
+
+When redesigning my portfolio, I wanted something that stood out but remained highly functional. The conventional developer portfolio often falls into one of two traps:
+
+1. A generic template that looks like everyone else's.
+2. An over-engineered 3D WebGL experience that takes 10 seconds to load and is impossible to navigate.
+
+I chose the CLI aesthetic because it's **confident, technical, and minimal**.
+
+## The Implementation
+
+I used Next.js with the App Router, Tailwind CSS, and MDX for the blog. This combination gives me the best of all worlds:
+
+- **Static Generation:** The site is blazingly fast.
+- **Easy Authoring:** I can write posts in Markdown, right in my IDE.
+- **Styling:** Tailwind makes it trivial to maintain a strict design system.
+
+Here's a quick example of a code block in my MDX setup:
+
+```typescript
+export async function getStaticProps() {
+  const posts = await getAllPosts();
+  return { props: { posts } };
+}
+```
+
+The syntax highlighting is handled by `rehype-pretty-code`, which does all the work at build time using Shiki. No client-side JS required!
+
+## Conclusion
+
+The result is a portfolio that feels like home. It's keyboard navigable, fully accessible, and respects your system preferences. Feel free to explore the source code on my GitHub!

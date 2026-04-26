@@ -1,0 +1,26 @@
+[
+  {
+    "company": "Tech Innovators Inc.",
+    "role": "Senior Software Engineer",
+    "start": "2023-01",
+    "end": "present",
+    "location": "San Francisco, CA (Remote)",
+    "highlights": [
+      "Led the migration of a legacy monolithic application to a microservices architecture using Next.js and Go.",
+      "Improved site performance, resulting in a 40% reduction in P95 latency and a 15% increase in conversion rates.",
+      "Mentored 3 junior engineers and established new frontend testing standards."
+    ]
+  },
+  {
+    "company": "Creative Solutions LLC",
+    "role": "Frontend Developer",
+    "start": "2020-05",
+    "end": "2022-12",
+    "location": "New York, NY",
+    "highlights": [
+      "Developed interactive data visualization dashboards using React and D3.js.",
+      "Collaborated with the design team to implement a comprehensive design system.",
+      "Reduced bundle size by 30% through code splitting and aggressive tree-shaking."
+    ]
+  }
+]

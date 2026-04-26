@@ -1,0 +1,24 @@
+[
+  {
+    "name": "CLI Portfolio",
+    "description": "A terminal-inspired personal portfolio website built with Next.js, Tailwind CSS, and MDX.",
+    "tags": ["Next.js", "TypeScript", "Tailwind CSS"],
+    "github": "https://github.com/batuhanyeltekin/portfolio",
+    "demo": "https://batuhanyeltekin.com",
+    "featured": true
+  },
+  {
+    "name": "React Data Dash",
+    "description": "An interactive data visualization dashboard for analyzing real-time financial data streams.",
+    "tags": ["React", "D3.js", "WebSockets"],
+    "github": "https://github.com/batuhanyeltekin/react-data-dash",
+    "featured": false
+  },
+  {
+    "name": "Distributed Cache",
+    "description": "A lightweight, distributed in-memory cache system implemented in Go using Raft consensus.",
+    "tags": ["Go", "Distributed Systems", "Raft"],
+    "github": "https://github.com/batuhanyeltekin/dist-cache",
+    "featured": true
+  }
+]
