@@ -135,8 +135,13 @@ export default function CLILanding() {
         return;
       }
 
-      // Ignore if focus is in an input (not likely here, but safe)
-      if (document.activeElement?.tagName === "INPUT" || document.activeElement?.tagName === "TEXTAREA") {
+      // Keep menu navigation active when the hidden CLI input has focus.
+      const activeElement = document.activeElement;
+      const isEditingOutsideCli =
+        activeElement?.tagName === "TEXTAREA" ||
+        (activeElement?.tagName === "INPUT" && activeElement.id !== "cli-input");
+
+      if (isEditingOutsideCli) {
         return;
       }
 
@@ -249,7 +254,7 @@ export default function CLILanding() {
                   onFocus={() => setSelectedIndex(idx)}
                   aria-current={selectedIndex === idx ? "page" : undefined}
                 >
-                  <span className={`hidden sm:inline-block w-4 ${selectedIndex === idx ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
+                  <span className={`hidden sm:inline-block w-4 ${selectedIndex === idx ? "opacity-100" : "opacity-0"}`}>
                     ❯
                   </span>
                   <span>{item.label}</span>
