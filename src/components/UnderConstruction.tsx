@@ -1,5 +1,6 @@
 import React from 'react';
 import { HAMMER_ASCII } from './hammerAscii';
+import PageCaption from './PageCaption';
 
 export default function UnderConstruction({ pageName }: { pageName: string }) {
   // We trim leading newlines if any
@@ -7,9 +8,7 @@ export default function UnderConstruction({ pageName }: { pageName: string }) {
 
   return (
     <div className="flex flex-col items-center justify-center py-10 sm:py-20 text-center animate-in fade-in duration-500 w-full">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-[var(--color-accent)] capitalize tracking-wide">
-        {pageName}
-      </h1>
+      <PageCaption text={pageName} className="mb-6" />
       <pre 
         className="text-[var(--color-accent)] mb-8 text-left"
         style={{

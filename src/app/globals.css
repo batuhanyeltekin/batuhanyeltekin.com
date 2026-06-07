@@ -61,8 +61,34 @@ a {
   animation: about-carousel-scroll 52s linear infinite;
 }
 
+@keyframes page-caption-write {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--page-caption-width);
+  }
+}
+
+.page-caption-word {
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: page-caption-write 0.65s steps(12, end) 0.12s forwards;
+}
+
+.font-trajan {
+  font-family: "Trajan Pro 3", "Trajan Pro", "Cinzel", "Times New Roman", serif;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .about-carousel-track {
+    animation: none;
+  }
+
+  .page-caption-word {
+    width: auto;
     animation: none;
   }
 }

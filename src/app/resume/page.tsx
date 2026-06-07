@@ -1,4 +1,5 @@
 import SubpageLayout from "@/components/layout/SubpageLayout";
+import PageCaption from "@/components/PageCaption";
 import { Download } from "lucide-react";
 
 export const metadata = {
@@ -10,7 +11,7 @@ export default function Resume() {
     <SubpageLayout currentPath="resume">
       <div className="animate-in fade-in duration-500 h-full flex flex-col">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-white">Resume</h1>
+          <PageCaption text="resume" />
           <a
             href="/resume.pdf"
             download
